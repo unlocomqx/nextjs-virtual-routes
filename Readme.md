@@ -1,4 +1,4 @@
-# VirtualKit
+# Next.js Virtual Routes
 
 An Intellij plugin to modify the Next.js project tree to make it easier to navigate between files.
 
