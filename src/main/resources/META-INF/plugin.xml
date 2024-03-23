@@ -1,0 +1,53 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>net.prestalife.nextvirtual</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Next.js Virtual Routes</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="prestalife.solutions@gmail.com" url="https://github.com/unlocomqx/nextjs-virtual-routes">PrestaLife
+    </vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    <p>Change the displayed names of Next.js files for easier navigation and route identification.</p>
+
+    <p>This plugin changes the displayed names of Next.js files to make it clearer which file belongs to which route.</p>
+    <ul>
+        <li>page.tsx → {route}.tsx</li>
+        <li>page.ts → {route}.ts</li>
+        <li>route.ts → {route}.server.ts</li>
+        <li>layour.tsx → {route}.layout.ts</li>
+    </ul>
+    <p>The same will be done to layout and error files.</p>
+    <p>This will solve the issue of having many files with the same name, thus improving file navigation.</p>
+]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <projectViewNestingRulesProvider
+                implementation="net.prestalife.nextvirtual.NextVirtualProjectViewNestingRulesProvider"/>
+        <projectViewNodeDecorator implementation="net.prestalife.nextvirtual.NextVirtualProjectViewNodeDecorator"/>
+        <editorTabTitleProvider implementation="net.prestalife.nextvirtual.NextVirtualEditorTabTitleProvider"/>
+        <fileIconProvider implementation="net.prestalife.nextvirtual.NextVirtualFileIconProvider"/>
+        <gotoFileContributor implementation="net.prestalife.nextvirtual.NextVirtualFileSearchContributor"/>
+
+        <applicationService
+                serviceImplementation="net.prestalife.nextvirtual.settings.AppSettingsState"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="net.prestalife.nextvirtual.settings.AppSettingsConfigurable"
+                id="net.prestalife.nextvirtual.settings.AppSettingsConfigurable"
+                displayName="VirtualKit Settings"/>
+    </extensions>
+</idea-plugin>
