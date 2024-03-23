@@ -1,6 +1,6 @@
 # Changelog
 
-Change the displayed names of SvelteKit files for easier navigation and route identification.
+Change the displayed names of Next.js files for easier navigation and route identification.
 
 - Route files are respresented by name
 - Similar files are nested under a common parent
