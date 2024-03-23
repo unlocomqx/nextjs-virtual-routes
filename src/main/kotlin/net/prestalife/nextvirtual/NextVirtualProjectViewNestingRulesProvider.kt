@@ -9,17 +9,11 @@ class NextVirtualProjectViewNestingRulesProvider : ProjectViewNestingRulesProvid
         if (!settings.nestRouteFiles) {
             return
         }
-        consumer.addNestingRule("+page.svelte", "+page.server.ts")
-        consumer.addNestingRule("+page.svelte", "+page.server.js")
-        consumer.addNestingRule("+page.svelte", "+page.ts")
-        consumer.addNestingRule("+page.svelte", "+page.js")
-        consumer.addNestingRule("+page.svelte", "+server.ts")
-        consumer.addNestingRule("+page.svelte", "+server.js")
+        consumer.addNestingRule("page.tsx", "page.ts")
+        consumer.addNestingRule("page.jsx", "page.js")
 
-        consumer.addNestingRule("+layout.svelte", "+layout.server.ts")
-        consumer.addNestingRule("+layout.svelte", "+layout.server.js")
-        consumer.addNestingRule("+layout.svelte", "+layout.ts")
-        consumer.addNestingRule("+layout.svelte", "+layout.js")
+        consumer.addNestingRule("layout.tsx", "layout.ts")
+        consumer.addNestingRule("layout.jsx", "layout.js")
     }
 
 }

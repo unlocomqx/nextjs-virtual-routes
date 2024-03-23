@@ -27,19 +27,17 @@ class NextVirtualFileSearchContributor : ChooseByNameContributorEx {
         val names = mutableListOf<String>()
 
         val files = arrayOf(
-            "+page.svelte",
-            "+page.server.ts",
-            "+page.server.js",
-            "+page.ts",
-            "+page.js",
-            "+server.ts",
-            "+server.js",
+            "page.tsx",
+            "page.jsx",
+            "route.ts",
+            "route.js",
+            "page.ts",
+            "page.js",
 
-            "+layout.svelte",
-            "+layout.server.ts",
-            "+layout.server.js",
-            "+layout.ts",
-            "+layout.js",
+            "layout.tsx",
+            "layout.jsx",
+            "layout.ts",
+            "layout.js",
 
             "+error.svelte",
         ).map { FilenameIndex.getVirtualFilesByName(it, scope) }.flatten()
@@ -54,7 +52,7 @@ class NextVirtualFileSearchContributor : ChooseByNameContributorEx {
 
         names.forEach { if (!processor.process(it)) return@forEach }
         if (LOG.isDebugEnabled) {
-            LOG.debug("All SvelteKit names retrieved:" + TimeoutUtil.getDurationMillis(start))
+            LOG.debug("All Next.js names retrieved:" + TimeoutUtil.getDurationMillis(start))
         }
     }
 

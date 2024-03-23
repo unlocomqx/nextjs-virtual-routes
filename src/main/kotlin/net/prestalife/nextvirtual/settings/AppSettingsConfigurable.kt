@@ -79,13 +79,13 @@ class AppSettingsComponent {
             .addComponent(
                 nestRouteFilesCheckbox,
             )
-            .addTooltip("Nest +page.server.js and +page.js under +page.svelte. May require restart.")
+            .addTooltip("Nest page.ts under page.tsx. May require restart.")
             .addSeparator()
 
             .addComponent(
                 modifyProjectTreeCheckbox,
             )
-            .addTooltip("Rename route files to {route}.svelte and {route}.server.js etc...")
+            .addTooltip("Rename route files to {route}.tsx and {route}.js etc...")
             .addSeparator()
 
 

@@ -29,35 +29,31 @@ class NextVirtualFile {
         ): String? {
             val route = getRoute(dir) ?: return null
 
-            if (name.matches(Regex("\\+page(@.*)?\\.svelte"))) {
-                return name.replace("+page", route)
+            if (name.matches(Regex("page\\.(tsx|jsx)"))) {
+                return name.replace("page", route)
             }
 
-            if (name.matches(Regex("\\+layout(@.*)?\\.svelte"))) {
-                return name.replace("+layout", "$route.layout")
+            if (name.matches(Regex("layout\\.(tsx|jsx)"))) {
+                return name.replace("layout", "$route.layout")
             }
 
-            if (name.matches(Regex("\\+error(@.*)?\\.svelte"))) {
+            if (name.matches(Regex("error(@.*)?\\.svelte"))) {
                 return name.replace("+error", "$route.error")
             }
 
-            if (name.matches(Regex("\\+page\\.server\\.(ts|js)"))) {
+            if (name.matches(Regex("page\\.server\\.(ts|js)"))) {
                 return "$route.server.$extension"
             }
 
-            if (name.matches(Regex("\\+page\\.(ts|js)"))) {
+            if (name.matches(Regex("page\\.(ts|js)"))) {
                 return "$route.$extension"
             }
 
-            if (name.matches(Regex("\\+server\\.(ts|js)"))) {
+            if (name.matches(Regex("server\\.(ts|js)"))) {
                 return "$route.endpoint.$extension"
             }
 
-            if (name.matches(Regex("\\+layout\\.server\\.(ts|js)"))) {
-                return "$route.layout.server.$extension"
-            }
-
-            if (name.matches(Regex("\\+layout\\.(ts|js)"))) {
+            if (name.matches(Regex("layout\\.(ts|js)"))) {
                 return "$route.layout.$extension"
             }
 
@@ -104,11 +100,11 @@ class NextVirtualFile {
         fun generateIcon(filename: String): Icon? {
             val extension = filename.substringAfterLast('.')
 
-            if (filename.matches(Regex("\\+page(@.*)?\\.svelte"))) {
+            if (filename.matches(Regex("page(@.*)?\\.(tsx|jsx)"))) {
                 return Icons.Page
             }
 
-            if (filename.matches(Regex("\\+layout(@.*)?\\.svelte"))) {
+            if (filename.matches(Regex("layout(@.*)?\\.(tsx|jsx)"))) {
                 return Icons.Layout
             }
 
@@ -116,15 +112,11 @@ class NextVirtualFile {
                 return Icons.Error
             }
 
-            if (filename.matches(Regex("\\+(page|layout)\\.server\\.(ts|js)"))) {
+            if (filename.matches(Regex("route\\.(ts|js)"))) {
                 return Icons.Server
             }
 
-            if (filename.matches(Regex("\\+(page|layout)\\.(ts|js)"))) {
-                return if (extension == "ts") Icons.PageTS else Icons.PageJS
-            }
-
-            if (filename.matches(Regex("\\+server\\.(ts|js)"))) {
+            if (filename.matches(Regex("(page|layout)\\.(ts|js)"))) {
                 return if (extension == "ts") Icons.PageTS else Icons.PageJS
             }
 
